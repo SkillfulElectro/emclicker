@@ -28,10 +28,11 @@ fn callback(event: Event) {
         EventType::KeyRelease(rdev::Key::Escape) => {
             unsafe {
                 if !IGNORE_POS {
-                    println!("\nEscape\r");
+                    println!("\nPosition Selected !\r");
                     io::stdout().flush().unwrap();
                     println!("selected point ({} , {})" , X , Y);
                     IGNORE_POS = true;
+                    println!("\n\n\npress Ctrl-C to end the process");
                     println!("clicking process started ...");
                     clicker();
                 }
@@ -98,6 +99,7 @@ fn main() {
 
     let input = input[0..input.len()].trim().to_string();
     if input == "wcp".to_string() {
+        println!("\nWhen you reached to your prefered position press Escape !");
         if let Err(error) = listen(callback) {
             println!("Error: {:?}", error);
         }
@@ -123,6 +125,7 @@ fn main() {
             IGNORE_POS = true;
         }
 
+        println!("\n\n\npress Ctrl-C to end the process");
         println!("clicking process started ...");
         clicker();
 
