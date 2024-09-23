@@ -25,7 +25,8 @@ jobs:
     - name: configuration (Linux)
       if: runner.os == 'Linux'
       run: |
-        sudo apt install libxdo-dev
+        sudo apt update
+        sudo apt install libxdo-dev libxi-dev
 
     - name: Build for Desktop Platforms
       run: cargo build --release
