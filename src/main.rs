@@ -107,13 +107,13 @@ fn main() {
     io::stdin().read_line(&mut input)
         .expect("Failed to read line");
 
-    unsafe { TYPE = input[0..input.len()-1].to_string(); }
+    unsafe { TYPE = input[0..input.len()].trim().to_string(); }
 
     println!("enter type of the click in the selected hardware : (for mouse : left , right)");
     let mut input = String::new();
     io::stdin().read_line(&mut input)
         .expect("Failed to read line");
-    unsafe { ADDITIONAL = input[0..input.len()-1].to_string(); }
+    unsafe { ADDITIONAL = input[0..input.len()].trim().to_string(); }
 
     println!("enter interval of clicks in milliseconds : ");
 
@@ -131,8 +131,8 @@ fn main() {
     io::stdin().read_line(&mut input)
         .expect("Failed to read line");
 
-    let input = &input[0..input.len()-1];
-    if input == "wcp"{
+    let input = &input[0..input.len()].trim().to_string();
+    if input == "wcp".to_string() {
         if let Err(error) = listen(callback) {
             println!("Error: {:?}", error);
         }
