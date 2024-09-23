@@ -161,7 +161,7 @@ fn main() {
             std::thread::spawn(||{
                 println!("clicking process started ...");
                 clicker();
-            };
+            });
         }
         
 
