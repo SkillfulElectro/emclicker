@@ -42,7 +42,7 @@ fn callback(event: Event) {
             unsafe {
                 if TRIGER_STOP.contains(&rdev::Key::Alt) {
                     if TRIGER_STOP.contains(&rdev::Key::KeyS) {
-                        std::process::exit(0);
+                        panic!("clicker terminated");
                     }
                 }
                 TRIGER_STOP.push(rdev::Key::ControlLeft);
@@ -52,7 +52,7 @@ fn callback(event: Event) {
             unsafe {
                 if TRIGER_STOP.contains(&rdev::Key::ControlLeft) {
                     if TRIGER_STOP.contains(&rdev::Key::KeyS) {
-                        std::process::exit(0);
+                        panic!("clicker terminated");
                     }
                 }
                 TRIGER_STOP.push(rdev::Key::Alt);
@@ -62,7 +62,7 @@ fn callback(event: Event) {
             unsafe {
                 if TRIGER_STOP.contains(&rdev::Key::Alt) {
                     if TRIGER_STOP.contains(&rdev::Key::ControlLeft) {
-                        std::process::exit(0);
+                        panic!("clicker terminated");
                     }
                 }
                 TRIGER_STOP.push(rdev::Key::KeyS);
@@ -156,8 +156,18 @@ fn main() {
         unsafe {
             Y = input.trim().parse().expect("invalid float64 number entered");
         }
-        println!("clicking process started ...");
-        clicker();
+        unsafe {
+            IGNORE_POS = true;
+            std::thread::spawn(||{
+                println!("clicking process started ...");
+                clicker();
+            };
+        }
+        
+
+        if let Err(error) = listen(callback) {
+            println!("Error: {:?}", error);
+        }
 
     }
 }
