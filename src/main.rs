@@ -82,11 +82,11 @@ fn clicker() {
         loop {
             let mut enigo = Enigo::new(&enigo::Settings::default()).expect("failed to simulate the clicks");
             if TYPE == "mouse".to_string() {
-                let _ = enigo.move_mouse(X as i32 , Y as i32 , enigo::Coordinate::Abs);
+                let _ = enigo.move_mouse(X as i32 , Y as i32 , enigo::Coordinate::Abs).expect("failed to move mouse");
                 if ADDITIONAL == "left".to_string() {
-                    let _ = enigo.button(enigo::Button::Left , enigo::Direction::Click); 
+                    let _ = enigo.button(enigo::Button::Left , enigo::Direction::Click).expect("failed to press mouse button"); 
                 } else {
-                    let _ = enigo.button(enigo::Button::Right , enigo::Direction::Click);
+                    let _ = enigo.button(enigo::Button::Right , enigo::Direction::Click).expect("failed to press mouse button");
                 }
             }
             click_count += 1;
