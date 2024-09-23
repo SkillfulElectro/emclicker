@@ -131,7 +131,7 @@ fn main() {
     io::stdin().read_line(&mut input)
         .expect("Failed to read line");
 
-    let input = &input[0..input.len()].trim().to_string();
+    let input = input[0..input.len()].trim().to_string();
     if input == "wcp".to_string() {
         if let Err(error) = listen(callback) {
             println!("Error: {:?}", error);
@@ -143,7 +143,7 @@ fn main() {
         io::stdin().read_line(&mut input)
             .expect("Failed to read line");
 
-        let input = &input[0..input.len()-1];
+
         unsafe {
             X = input.trim().parse().expect("invalid float64 number entered");
         }
@@ -153,7 +153,6 @@ fn main() {
         io::stdin().read_line(&mut input)
             .expect("Failed to read line");
 
-        let input = &input[0..input.len()-1];
         unsafe {
             Y = input.trim().parse().expect("invalid float64 number entered");
         }
