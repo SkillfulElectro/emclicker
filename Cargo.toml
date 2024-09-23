@@ -1,0 +1,17 @@
+[package]
+name = "emclicker"
+version = "0.1.0"
+edition = "2021"
+authors = ["ElectroMutex"]
+description = "simple cli auto clicker app"
+license = "MIT"
+documentation = "https://docs.rs/emclicker/latest/emclicker/"
+homepage = "https://github.com/SkillfulElectro/emclicker.git"
+repository = "https://github.com/SkillfulElectro/emclicker.git"
+readme = "README.md"
+keywords = ["cli" , "clicker"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+rdev = "0.5.3"
+enigo = "0.2.1"
