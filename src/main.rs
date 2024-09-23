@@ -11,7 +11,6 @@ static mut ADDITIONAL : String = String::new();
 
 static mut IGNORE_POS : bool = false;
 
-static mut TRIGER_STOP : Vec<rdev::Key> = Vec::new();
 
 fn callback(event: Event) {
     match event.event_type {
@@ -38,41 +37,7 @@ fn callback(event: Event) {
                 }
             }
         } ,
-        EventType::KeyRelease(rdev::Key::ControlLeft) => {
-            unsafe {
-                if TRIGER_STOP.contains(&rdev::Key::Alt) {
-                    if TRIGER_STOP.contains(&rdev::Key::KeyS) {
-                        panic!("clicker terminated");
-                    }
-                }
-                TRIGER_STOP.push(rdev::Key::ControlLeft);
-            }
-        } ,
-        EventType::KeyRelease(rdev::Key::Alt) => {
-            unsafe {
-                if TRIGER_STOP.contains(&rdev::Key::ControlLeft) {
-                    if TRIGER_STOP.contains(&rdev::Key::KeyS) {
-                        panic!("clicker terminated");
-                    }
-                }
-                TRIGER_STOP.push(rdev::Key::Alt);
-            }
-        } ,
-        EventType::KeyRelease(rdev::Key::KeyS) => {
-            unsafe {
-                if TRIGER_STOP.contains(&rdev::Key::Alt) {
-                    if TRIGER_STOP.contains(&rdev::Key::ControlLeft) {
-                        panic!("clicker terminated");
-                    }
-                }
-                TRIGER_STOP.push(rdev::Key::KeyS);
-            }
-        } ,
-        _ => {
-            unsafe {
-                TRIGER_STOP = Vec::new();
-            }
-        }, 
+        _ => () , 
     }
 }
 
@@ -155,19 +120,11 @@ fn main() {
 
         unsafe {
             Y = input.trim().parse().expect("invalid float64 number entered");
-        }
-        unsafe {
             IGNORE_POS = true;
-            std::thread::spawn(||{
-                println!("clicking process started ...");
-                clicker();
-            });
         }
-        
 
-        if let Err(error) = listen(callback) {
-            println!("Error: {:?}", error);
-        }
+        println!("clicking process started ...");
+        clicker();
 
     }
 }
