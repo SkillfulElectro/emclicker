@@ -23,7 +23,7 @@ jobs:
     - name: Set up Rust
       run: rustup update
     - name: configuration (Linux)
-      if: runner.os == 'ubuntu'
+      if: runner.os == 'Linux'
       run: |
         sudo apt install libxdo-dev
 
